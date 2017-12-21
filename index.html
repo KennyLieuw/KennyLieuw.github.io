@@ -196,9 +196,9 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
-    music.loop = true;
-    music.play();
-    
+    music = true;
+    music.loopFull();
+
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
 
     text.anchor.set(0.5);
