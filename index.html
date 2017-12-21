@@ -39,6 +39,7 @@ google: {
   families: ['Roboto']
 }	
 
+var music;
 
 function create() {
     prepareBoard();
@@ -79,6 +80,7 @@ function create() {
     mid_emitter.start(false, 12000, 40);
     front_emitter.start(false, 6000, 1000);
 
+    music = game.add.audio('christmas');
 
 }
 
@@ -192,10 +194,7 @@ function checkIfFinished() {
 
 }
 
-var music;
 function showFinishedText() {
-
-	music = game.add.audio('christmas');
     music.play();
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
@@ -247,6 +246,34 @@ function shuffle(array) {
 
     return array;
     
+}
+class Snow extends Phaser.Group {
+    constructor(w = 200, h = 200) {
+        super(game);
+        this.w = w;
+        this.h = h;
+        this.lastFlake = null;
+        //
+        //
+        //
+        this.makeFlakes();
+    }
+    makeFlakes() {
+        for (var i = 0; i < 250; i++) {
+            var flake = new Flake(this.w, this.h);
+            //if the last flake exists
+            //place it as the prev flake
+            if (this.lastFlake != null) {
+                flake.prevFlake = this.lastFlake;
+            }
+            this.lastFlake = flake;
+        }
+    }
+    update() {
+    	//move the last flake
+    	//this will start a chain reaction
+        this.lastFlake.move();
+    }
 }
 
 var max = 0;
