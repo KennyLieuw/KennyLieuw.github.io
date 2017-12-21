@@ -25,6 +25,7 @@ function preload() {
     game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
     game.load.audio('finishMusic', 'assets/christmas.ogg');
     game.load.audio('backgroundMusic', 'assets/christmasBackground.ogg');
+    game.load.audio('jingle', 'assets/jingle.ogg');
 
 }
 
@@ -45,6 +46,7 @@ google: {
 
 var backgroundMusic;
 var finishMusic;
+var jingleSound;
 
 function create() {
     prepareBoard();
@@ -87,24 +89,10 @@ function create() {
 
     backgroundMusic = game.add.audio('backgroundMusic');
     finishMusic = game.add.audio('finishMusic');
+    jingleSound = game.add.audio('jingle');
 
     backgroundMusic.play();	
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-    game.input.onDown.add(gofull, this); 
-}
-
-function gofull() {
-
-    if (game.scale.isFullScreen)
-    {
-        game.scale.stopFullScreen();
-    }
-    else
-    {
-        game.scale.startFullScreen(false);
-    }
-
 }
 
 function backgroundMusic() {
@@ -190,6 +178,7 @@ function canMove(piece) {
 }
 
 function movePiece(piece, blackPiece) {
+	jingleSound.play();
 
     var tmpPiece = {
         posX: piece.posX,
