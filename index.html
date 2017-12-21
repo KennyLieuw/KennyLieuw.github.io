@@ -40,7 +40,7 @@ var piecesGroup,
     shuffledIndexArray = [];
 
 google: {
-  families: ['Roboto']
+  families: ['Tangerine']
 }   
 
 var backgroundMusic;
@@ -89,6 +89,7 @@ function create() {
     backgroundMusic = game.add.audio('backgroundMusic');
     finishMusic = game.add.audio('finishMusic');
 
+    	backgroundMusic.play();	
 }
 
 function backgroundMusic() {
@@ -97,7 +98,9 @@ function backgroundMusic() {
 
 
 window.setInterval(function(){
-    backgroundMusic();
+	if(!checkStopMusic){
+    	backgroundMusic();
+	}
 }, 191000);
 
 
@@ -227,7 +230,7 @@ function showFinishedText() {
     text.align = 'center';
 
     //  Font style
-    text.font = 'Roboto';
+    text.font = 'Tangerine';
     text.fontSize = 50;
     text.fontWeight = 'bold';
 
