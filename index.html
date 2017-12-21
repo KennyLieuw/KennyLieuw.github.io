@@ -13,6 +13,17 @@
 <body>
 <script type="text/javascript">
 
+
+
+function preload() {
+    game.load.spritesheet("background", "assets/christmascard.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+    game.load.spritesheet('snowflakes', 'assets/snowflakes.png', 17, 17);
+    game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
+    game.load.audio('christmas', 'assets/christmas.ogg');
+
+}
+
 var game = new Phaser.Game(1366,768, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
 var PIECE_WIDTH = 273,
@@ -28,13 +39,7 @@ google: {
   families: ['Roboto']
 }	
 
-function preload() {
-    game.load.spritesheet("background", "assets/christmascard.jpg", PIECE_WIDTH, PIECE_HEIGHT);
-    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-    game.load.spritesheet('snowflakes', 'assets/snowflakes.png', 17, 17);
-    game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
-
-}
+var music;
 
 function create() {
     prepareBoard();
@@ -74,6 +79,9 @@ function create() {
     back_emitter.start(false, 14000, 20);
     mid_emitter.start(false, 12000, 40);
     front_emitter.start(false, 6000, 1000);
+
+    music = game.add.audio('christmas');
+
 }
 
 function prepareBoard() {
@@ -187,8 +195,7 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
-
-    //var style = { font: "40px Arial", fill: "#000", align: "center"};
+    music.play();
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
 
