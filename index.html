@@ -24,7 +24,7 @@ function preload() {
     game.load.spritesheet('snowflakes', 'assets/snowflakes.png', 17, 17);
     game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
     game.load.audio('finishMusic', 'assets/christmas.ogg');
-    game.load.audio('backgroundMusic', 'assets/backgroundChristmas.ogg');
+    game.load.audio('backgroundMusic', 'assets/christmasBackground.ogg');
 
 }
 
@@ -107,7 +107,9 @@ window.setInterval(function(){
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 var randomInt = getRandomInt(0,3);
+
 function prepareBoard() {
     var piecesIndex = 0,
         i, j,
