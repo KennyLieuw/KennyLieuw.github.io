@@ -45,7 +45,6 @@ google: {
 
 var backgroundMusic;
 var finishMusic;
-var checkStopMusic = false;
 
 function create() {
     prepareBoard();
@@ -98,9 +97,7 @@ function backgroundMusic() {
 
 
 window.setInterval(function(){
-	if(!checkStopMusic){
     	backgroundMusic();
-	}
 }, 191000);
 
 
@@ -220,8 +217,7 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
-
-	checkStopMusic = true;
+	backgroundMusic.pause();
 	finishMusic.play();
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
