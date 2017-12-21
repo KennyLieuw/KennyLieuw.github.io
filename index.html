@@ -35,6 +35,7 @@ function preload() {
 
 function create() {
     prepareBoard();
+    var snow=new Snow(game.width,game.height);
 }
 
 function prepareBoard() {
@@ -200,6 +201,83 @@ function shuffle(array) {
 
     return array;
     
+}
+class Snow extends Phaser.Group {
+    constructor(w = 200, h = 200) {
+        super(game);
+        this.w = w;
+        this.h = h;
+        this.lastFlake = null;
+        //
+        //
+        //
+        this.makeFlakes();
+    }
+    makeFlakes() {
+        for (var i = 0; i < 250; i++) {
+            var flake = new Flake(this.w, this.h);
+            //if the last flake exists
+            //place it as the prev flake
+            if (this.lastFlake != null) {
+                flake.prevFlake = this.lastFlake;
+            }
+            this.lastFlake = flake;
+        }
+    }
+    update() {
+    	//move the last flake
+    	//this will start a chain reaction
+        this.lastFlake.move();
+    }
+}
+
+class Flake extends Phaser.Group {
+    constructor(w, h) {
+        super(game);
+
+        //make the graphic
+        var f = game.add.graphics();
+        f.beginFill(0xffffff, 1);
+        f.drawCircle(0, 0, 10);
+        f.endFill();
+        this.add(f);
+        //
+        //
+        this.w=w;
+        this.h=h;
+        //
+        //
+        //init properties
+
+        this.y = game.rnd.integerInRange(0, h);
+        this.reset();
+    }
+    reset()
+    {
+    	//re-init properites
+    	this.x = game.rnd.integerInRange(0, this.w);
+    	this.drift = game.rnd.integerInRange(-1, 1) * (.05 + Math.random() * .1);
+        this.fallSpeed = 1 + Math.random() * 10;
+        this.scale.x = .1 + Math.random();
+        this.scale.y = this.scale.x;
+        this.alpha = .1 + Math.random();
+    }
+    move()
+    {
+    	this.x+=this.drift;
+    	this.y+=this.fallSpeed;
+    	if (this.y>this.h)
+    	{
+    		//take back to top
+    		this.y=-10;
+    		this.reset();
+    	}
+    	if (this.prevFlake)
+    	{
+    		//move the previous flake
+    		this.prevFlake.move();
+    	}
+    }
 }
 
 </script>
