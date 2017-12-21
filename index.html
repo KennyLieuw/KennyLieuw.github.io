@@ -21,6 +21,7 @@ function preload() {
     game.load.spritesheet('snowflakes', 'assets/snowflakes.png', 17, 17);
     game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
     game.load.audio('christmas', 'assets/christmas.ogg');
+    game.load.audio('bleh', 'assets/Bleh.mp3');
 
 }
 
@@ -80,7 +81,7 @@ function create() {
     mid_emitter.start(false, 12000, 40);
     front_emitter.start(false, 6000, 1000);
 
-    music = game.add.audio('christmas');
+    music = game.add.audio('bleh');
 
 }
 
@@ -195,8 +196,9 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
+    music.loop = true;
     music.play();
-
+    
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
 
     text.anchor.set(0.5);
