@@ -196,8 +196,11 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
-    music = true;
-    music.play('',0,1,true,true);
+    music.addEventListener('ended', function() {
+   		this.currentTime = 0;
+    	this.play();
+	}, false);
+	music.play();
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
 
