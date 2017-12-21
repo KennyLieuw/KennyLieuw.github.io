@@ -7,12 +7,10 @@
     <style type="text/css">
         body {
             margin: 0;
-            margin-top: 1px;
         }
     </style>
 </head>
 <body>
-<script>window.scrollTo(0,1);screen.orientation.lock('landscape');</script>
 <script type="text/javascript">
 
 
@@ -90,8 +88,24 @@ function create() {
     backgroundMusic = game.add.audio('backgroundMusic');
     finishMusic = game.add.audio('finishMusic');
 
-    	backgroundMusic.play();	
+	backgroundMusic.play();
+
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+    game.input.onDown.add(gofull, this);
+
 }
+
+function gofull() {
+
+    if (game.scale.isFullScreen)
+    {
+        game.scale.stopFullScreen();
+    }
+    else
+    {
+        game.scale.startFullScreen(false);
+    }
 
 function backgroundMusic() {
     	backgroundMusic.play();	
