@@ -3,7 +3,7 @@
 <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <title>Christmas mini game</title>
-    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <script type="text/javascript" src="phaser.min.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -16,7 +16,10 @@
 
 
 function preload() {
-    game.load.spritesheet("background", "assets/christmascard.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background0", "assets/christmascard.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background1", "assets/image1.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background2", "assets/image2.jpg", PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background3", "assets/image3.jpg", PIECE_WIDTH, PIECE_HEIGHT);
     game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     game.load.spritesheet('snowflakes', 'assets/snowflakes.png', 17, 17);
     game.load.spritesheet('snowflakes_large', 'assets/snowflakes_large.png', 64, 64);
@@ -101,8 +104,11 @@ window.setInterval(function(){
 }, 191000);
 
 
-function prepareBoard() {
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+function prepareBoard() {
     var piecesIndex = 0,
         i, j,
         piece;
@@ -121,7 +127,7 @@ function prepareBoard() {
         for (j = 0; j < BOARD_COLS; j++)
         {
             if (shuffledIndexArray[piecesIndex]) {
-                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background", shuffledIndexArray[piecesIndex]);
+                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background" + getRandomInt(0,3), shuffledIndexArray[piecesIndex]);
             }
             else { //initial position of black piece
                 piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT);
