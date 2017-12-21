@@ -107,7 +107,7 @@ window.setInterval(function(){
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+var randomInt = getRandomInt(0,3);
 function prepareBoard() {
     var piecesIndex = 0,
         i, j,
@@ -127,7 +127,7 @@ function prepareBoard() {
         for (j = 0; j < BOARD_COLS; j++)
         {
             if (shuffledIndexArray[piecesIndex]) {
-                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background" + getRandomInt(0,3), shuffledIndexArray[piecesIndex]);
+                piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background" + randomInt, shuffledIndexArray[piecesIndex]);
             }
             else { //initial position of black piece
                 piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT);
