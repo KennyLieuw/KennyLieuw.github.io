@@ -6,7 +6,7 @@
     <script type="text/javascript" src="phaser.min.js"></script>
     <style type="text/css">
         body {
-            margin: 0;
+            margin: 1;
         }
     </style>
 </head>
@@ -29,9 +29,9 @@ function preload() {
 }
 var configuration = {
 	'canvas_width_max' : 2048,                  
-	'canvas_width' : 1000,                      
+	'canvas_width' : 650,                      
 	'canvas_height_max' : 2048,             
-	'canvas_height' : 650,                      
+	'canvas_height' : 1000,                      
 	'scale_ratio' : 1,                          
 	'aspect_ratio' : 1,                         
 };
@@ -168,11 +168,11 @@ function prepareBoard() {
             piece.name = 'piece' + i.toString() + 'x' + j.toString();
             piece.currentIndex = piecesIndex;
             piece.destIndex = shuffledIndexArray[piecesIndex];
-            piecesIndex++;
             piece.inputEnabled = true;
             piece.events.onInputDown.add(selectPiece, this);
             piece.posX = j;
             piece.posY = i;
+            piecesIndex++;
         }
     }
 
