@@ -8,7 +8,6 @@
         body {
             margin: 1;
             background-color: red;
-            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -44,11 +43,11 @@ configuration.aspect_ratio = configuration.canvas_width / configuration.canvas_h
 if (configuration.aspect_ratio < 1) configuration.scale_ratio = configuration.canvas_height / configuration.canvas_height_max;
 else configuration.scale_ratio = configuration.canvas_width / configuration.canvas_width_max;
 
-var game = new Phaser.Game(configuration.canvas_width, configuration.canvas_height, Phaser.CANVAS, 'Christmas mini game', { preload: preload, create: create });
+var game = new Phaser.Game(configuration.canvas_width, configuration.canvas_height - 9, Phaser.CANVAS, 'Christmas mini game', { preload: preload, create: create });
 
 
 var PIECE_WIDTH = configuration.canvas_width / 3,
-    PIECE_HEIGHT = configuration.canvas_height / 3,
+    PIECE_HEIGHT = (configuration.canvas_height / 3) - 3,
     BOARD_COLS,
     BOARD_ROWS;
 
