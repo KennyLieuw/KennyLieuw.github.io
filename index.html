@@ -28,11 +28,26 @@ function preload() {
     game.load.audio('jingle', 'assets/jingle.ogg');
 
 }
+var configuration = {
+'canvas_width_max' : 2048,                  
+'canvas_width' : 1000,                      
+'canvas_height_max' : 2048,             
+'canvas_height' : 650,                      
+'scale_ratio' : 1,                          
+'aspect_ratio' : 1,                         
+};
 
-var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'Christmas mini game', { preload: preload, create: create });
+configuration.canvas_width = window.screen.availWidth * window.devicePixelRatio;
+configuration.canvas_height = window.screen.availHeight * window.devicePixelRatio;
+configuration.aspect_ratio = configuration.canvas_width / configuration.canvas_height;
+if (configuration.aspect_ratio < 1) configuration.scale_ratio = configuration.canvas_height / configuration.canvas_height_max;
+else configuration.scale_ratio = configuration.canvas_width / configuration.canvas_width_max;
 
-var PIECE_WIDTH = (window.innerWidth * window.devicePixelRatio) / 3,
-    PIECE_HEIGHT = (window.innerHeight * window.devicePixelRatio) / 3,
+var game = new Phaser.Game(configuration.canvas_width, configuration.canvas_height, Phaser.CANVAS, 'Christmas mini game', { preload: preload, create: create });
+
+
+var PIECE_WIDTH = configuration.canvas_width / 3,
+    PIECE_HEIGHT = configuration.canvas_height / 3,
     BOARD_COLS,
     BOARD_ROWS;
 
@@ -49,6 +64,11 @@ var finishMusic;
 var jingleSound;
 
 function create() {
+
+this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+this.game.scale.refresh();
+
     prepareBoard();
 
     back_emitter = game.add.emitter(game.world.centerX, -32, 600);
@@ -91,8 +111,7 @@ function create() {
     finishMusic = game.add.audio('finishMusic');
     jingleSound = game.add.audio('jingle');
 
-    backgroundMusic.play(); 
-    game.stage.scalemode = Phaser.ScaleManager.SHOW_ALL;
+        backgroundMusic.play(); 
 }
 
 function backgroundMusic() {
