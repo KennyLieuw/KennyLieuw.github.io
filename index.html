@@ -7,12 +7,13 @@
     <style type="text/css">
         body {
             margin: 0;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 <script type="text/javascript">
-
+window.scrollTo(0,10);
 
 
 function preload() {
@@ -172,7 +173,7 @@ function selectPiece(piece) {
 	this.game.scale.pageAlignHorizontally = true;
 	this.game.scale.pageAlignVertically = true;
 	this.game.scale.refresh();
-	
+
     var blackPiece = canMove(piece);
 
     //if there is a black piece in neighborhood
