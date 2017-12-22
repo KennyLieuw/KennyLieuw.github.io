@@ -119,6 +119,11 @@ function create() {
     setTimeout(scaling, 1000);
 }
 
+// Listen for resize changes
+window.addEventListener("resize", function() {
+	scaling();	
+}, false);
+
 function backgroundMusic() {
         backgroundMusic.play(); 
 }
