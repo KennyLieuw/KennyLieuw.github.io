@@ -65,11 +65,6 @@ var jingleSound;
 
 function create() {
 
-	this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-	this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-	this.game.scale.pageAlignHorizontally = true;
-	this.game.scale.pageAlignVertically = true;
-	this.game.scale.refresh();
 
     prepareBoard();
 
@@ -172,6 +167,12 @@ function prepareBoard() {
 
 function selectPiece(piece) {
 
+	this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+	this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	this.game.scale.pageAlignHorizontally = true;
+	this.game.scale.pageAlignVertically = true;
+	this.game.scale.refresh();
+	
     var blackPiece = canMove(piece);
 
     //if there is a black piece in neighborhood
