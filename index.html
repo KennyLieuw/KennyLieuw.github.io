@@ -29,10 +29,10 @@ function preload() {
 
 }
 
-var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+var game = new Phaser.Game(window.availWidth * window.devicePixelRatio, window.availHeight * window.devicePixelRatio, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-var PIECE_WIDTH = (window.innerWidth * window.devicePixelRatio) / 3,
-    PIECE_HEIGHT = (window.innerHeight * window.devicePixelRatio) / 3,
+var PIECE_WIDTH = (window.availWidth * window.devicePixelRatio) / 3,
+    PIECE_HEIGHT = (window.availHeight * window.devicePixelRatio) / 3,
     BOARD_COLS,
     BOARD_ROWS;
 
