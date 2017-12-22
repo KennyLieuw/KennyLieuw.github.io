@@ -6,14 +6,13 @@
     <script type="text/javascript" src="phaser.min.js"></script>
     <style type="text/css">
         body {
-            margin: 1;
+            margin: 0;
             background-color: red;
         }
     </style>
 </head>
 <body>
 <script type="text/javascript">
-
 
 function preload() {
     game.load.spritesheet("background0", "assets/christmascard.jpg", PIECE_WIDTH, PIECE_HEIGHT);
@@ -28,13 +27,14 @@ function preload() {
     game.load.audio('jingle', 'assets/jingle.ogg');
 
 }
+
 var configuration = {
-	'canvas_width_max' : 2048,                  
-	'canvas_width' : 650,                      
-	'canvas_height_max' : 2048,             
-	'canvas_height' : 1000,                      
-	'scale_ratio' : 1,                          
-	'aspect_ratio' : 1,                         
+    'canvas_width_max' : 2048,                  
+    'canvas_width' : 1000,                      
+    'canvas_height_max' : 2048,             
+    'canvas_height' : 650,                      
+    'scale_ratio' : 1,                          
+    'aspect_ratio' : 1,                         
 };
 
 configuration.canvas_width = window.screen.availWidth * window.devicePixelRatio;
@@ -43,17 +43,19 @@ configuration.aspect_ratio = configuration.canvas_width / configuration.canvas_h
 if (configuration.aspect_ratio < 1) configuration.scale_ratio = configuration.canvas_height / configuration.canvas_height_max;
 else configuration.scale_ratio = configuration.canvas_width / configuration.canvas_width_max;
 
-var game = new Phaser.Game(configuration.canvas_width - 30, configuration.canvas_height - 90, Phaser.CANVAS, 'Christmas mini game', { preload: preload, create: create });
+var game = new Phaser.Game(configuration.canvas_width, configuration.canvas_height, Phaser.AUTO, 'Christmas mini game', { preload: preload, create: create });
 
 
-var PIECE_WIDTH = (configuration.canvas_width / 3) - 10,
-    PIECE_HEIGHT = (configuration.canvas_height / 3) - 30,
+var PIECE_WIDTH = configuration.canvas_width / 3,
+    PIECE_HEIGHT = configuration.canvas_height / 3,
     BOARD_COLS,
     BOARD_ROWS;
 
 var piecesGroup,
     piecesAmount,
     shuffledIndexArray = [];
+
+
 
 google: {
   families: ['Tangerine']
@@ -63,13 +65,13 @@ var backgroundMusic;
 var finishMusic;
 var jingleSound;
 
-function scaling(){	
-	this.game.scale.pageAlignHorizontally = true;
-	this.game.scale.pageAlignVertically = true;
+function scaling(){ 
+    this.game.scale.pageAlignHorizontally = true;
+    this.game.scale.pageAlignVertically = true;
 
-	this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
-	this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-	this.game.scale.refresh();
+    this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.game.scale.refresh();
 }
 function create() {
 
@@ -122,7 +124,7 @@ function create() {
 
 // Listen for resize changes
 window.addEventListener("resize", function() {
-	scaling();	
+    scaling();  
 }, false);
 
 function backgroundMusic() {
@@ -146,10 +148,10 @@ function prepareBoard() {
         i, j,
         piece;
 
-    BOARD_COLS = Math.floor(game.world.width / PIECE_WIDTH);
-    BOARD_ROWS = Math.floor(game.world.height / PIECE_HEIGHT);
+    BOARD_COLS = 3;
+    BOARD_ROWS = 3;
 
-    piecesAmount = BOARD_COLS * BOARD_ROWS;
+    piecesAmount = 9;
 
     shuffledIndexArray = createShuffledIndexArray();
 
