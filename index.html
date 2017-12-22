@@ -29,10 +29,10 @@ function preload() {
 
 }
 
-var game = new Phaser.Game(1366,768, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-var PIECE_WIDTH = 273,
-    PIECE_HEIGHT = 256,
+var PIECE_WIDTH = (window.innerWidth * window.devicePixelRatio) / 3,
+    PIECE_HEIGHT = (window.innerHeight * window.devicePixelRatio) / 3,
     BOARD_COLS,
     BOARD_ROWS;
 
@@ -91,17 +91,17 @@ function create() {
     finishMusic = game.add.audio('finishMusic');
     jingleSound = game.add.audio('jingle');
 
-    backgroundMusic.play();	
+    backgroundMusic.play(); 
     game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
 }
 
 function backgroundMusic() {
-    	backgroundMusic.play();	
+        backgroundMusic.play(); 
 }
 
 
 window.setInterval(function(){
-    	backgroundMusic();
+        backgroundMusic();
 }, 191000);
 
 
@@ -178,7 +178,7 @@ function canMove(piece) {
 }
 
 function movePiece(piece, blackPiece) {
-	jingleSound.play();
+    jingleSound.play();
 
     var tmpPiece = {
         posX: piece.posX,
@@ -222,8 +222,8 @@ function checkIfFinished() {
 }
 
 function showFinishedText() {
-	backgroundMusic.pause();
-	finishMusic.play();
+    backgroundMusic.pause();
+    finishMusic.play();
 
     var text = game.add.text(game.world.centerX, game.world.centerY, "Merry Christmas \n& \nHappy New Year");
 
