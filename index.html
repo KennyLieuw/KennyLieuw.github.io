@@ -148,15 +148,15 @@ function prepareBoard() {
     BOARD_COLS = Math.floor(game.world.width / PIECE_WIDTH);
     BOARD_ROWS = Math.floor(game.world.height / PIECE_HEIGHT);
 
-    piecesAmount = 9;
+    piecesAmount = BOARD_COLS * BOARD_ROWS;
 
     shuffledIndexArray = createShuffledIndexArray();
 
     piecesGroup = game.add.group();
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < BOARD_ROWS; i++)
     {
-        for (j = 0; j < 3; j++)
+        for (j = 0; j < BOARD_COLS; j++)
         {
             if (shuffledIndexArray[piecesIndex]) {
                 piece = piecesGroup.create(j * PIECE_WIDTH, i * PIECE_HEIGHT, "background" + randomInt, shuffledIndexArray[piecesIndex]);
@@ -168,11 +168,11 @@ function prepareBoard() {
             piece.name = 'piece' + i.toString() + 'x' + j.toString();
             piece.currentIndex = piecesIndex;
             piece.destIndex = shuffledIndexArray[piecesIndex];
+            piecesIndex++;
             piece.inputEnabled = true;
             piece.events.onInputDown.add(selectPiece, this);
             piece.posX = j;
             piece.posY = i;
-            piecesIndex++;
         }
     }
 
